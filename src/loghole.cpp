@@ -16,11 +16,11 @@ int Loghole::get_logger_idx(std::shared_ptr<ILogger> logger) {
     return idx;
 }
 
-void Loghole::log(std::string_view msg) {
-    LH_DEBUG_PRINT("New log: " << msg);
+void Loghole::log(std::string_view info, LogLevel level) {
+    LH_DEBUG_PRINT("New log with level \"" << log_level_to_string(level) << "\": " << info);
 
     for (int i = 0; i < m_loggers.size(); i++) {
-        m_loggers[i]->log(msg);
+        m_loggers[i]->log(info, level);
     }
 }
 
