@@ -20,9 +20,10 @@ int Loghole::get_logger_idx(std::shared_ptr<ILogger> logger) {
 void Loghole::log(std::string_view info, LogLevel level) {
     LH_DEBUG_PRINT("New log with level \"" << log_level_to_string(level) << "\": " << info);
 
+    Log log(info, level);
+
     for (int i = 0; i < m_loggers.size(); i++) {
-        Log log(info, level);
-        m_loggers[i]->log(log);
+        m_loggers[i]->prep_to_log(log);
     }
 }
 
@@ -30,7 +31,7 @@ void Loghole::attach(std::shared_ptr<ILogger> logger) {
     if (get_logger_idx(logger) == -1) {
         m_loggers.push_back(logger);
 
-        LH_DEBUG_PRINT("Successfully attached " << logger << " to " << this);
+        LH_DEBUG_PRINT(logger << " attached to " << this);
 
         return;
     }

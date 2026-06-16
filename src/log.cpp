@@ -21,8 +21,8 @@ Log::Log(std::string_view info, LogLevel level)
     m_timestamp = get_timestamp();
 }
 
-std::string Log::formatted() {
-    std::string res = m_timestamp + " [" + log_level_to_string(m_level) + "] " + m_info;
+std::string Log::formatted(const std::function<std::string(LogLevel)>& level_to_string_func) {
+    std::string res = m_timestamp + " [" + level_to_string_func(m_level) + "] " + m_info;
 
     return res;
 }

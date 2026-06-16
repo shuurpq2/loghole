@@ -1,5 +1,5 @@
-#ifndef CONSOLE_LOGGER_H
-#define CONSOLE_LOGGER_H
+#ifndef LH_CONSOLE_LOGGER_H
+#define LH_CONSOLE_LOGGER_H
 
 #include "ilogger.h"
 #include "log_level.h"

@@ -13,4 +13,6 @@ enum class LogLevel {
 
 std::string log_level_to_string(LogLevel level);
 
+std::string log_level_to_console_colored_string(LogLevel level);
+
 #endif

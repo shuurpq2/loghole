@@ -2,8 +2,5 @@
 #include <iostream>
 
 void ConsoleLogger::log(Log& log) {
-    if (log.get_level() >= m_log_level) {
-        std::cout << log.formatted() << "\n";
-    }
-
+    std::cout << log.formatted(log_level_to_console_colored_string) << "\n";
 }

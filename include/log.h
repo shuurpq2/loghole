@@ -1,6 +1,7 @@
 #ifndef LH_LOG_H
 #define LH_LOG_H
 
+#include <functional>
 #include <string>
 #include <log_level.h>
 #include <chrono>
@@ -14,7 +15,7 @@ private:
 public:
     Log(std::string_view info, LogLevel level);
 
-    std::string formatted();
+    std::string formatted(const std::function<std::string(LogLevel)>& level_to_string_func = log_level_to_string);
 
     LogLevel get_level() {return m_level;}
 };
