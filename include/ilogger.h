@@ -1,8 +1,9 @@
 #ifndef ILOGGER_H
 #define ILOGGER_H
 
-#include <string_view>
 #include "log_level.h"
+#include "log.h"
+#include <string_view>
 
 class ILogger {
 protected:
@@ -10,7 +11,7 @@ protected:
 
 public:
     virtual ~ILogger() = default;
-    virtual void log(std::string_view info, LogLevel level) = 0;
+    virtual void log(Log& log) = 0;
     void set_log_level(LogLevel level) {m_log_level = level;}
 };
 

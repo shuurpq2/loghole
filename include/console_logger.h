@@ -6,7 +6,7 @@
 
 class ConsoleLogger : public ILogger {
 public:
-    void log(std::string_view info, LogLevel level) override;
+    void log(Log& log) override;
 };
 
 #endif

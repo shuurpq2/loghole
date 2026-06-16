@@ -1,7 +1,8 @@
 #include "loghole.h"
+#include "debug.h"
+#include "log.h"
 #include <iostream>
 #include <algorithm>
-#include "debug.h"
 
 int Loghole::get_logger_idx(std::shared_ptr<ILogger> logger) {
     int idx = -1;
@@ -20,7 +21,8 @@ void Loghole::log(std::string_view info, LogLevel level) {
     LH_DEBUG_PRINT("New log with level \"" << log_level_to_string(level) << "\": " << info);
 
     for (int i = 0; i < m_loggers.size(); i++) {
-        m_loggers[i]->log(info, level);
+        Log log(info, level);
+        m_loggers[i]->log(log);
     }
 }
 
