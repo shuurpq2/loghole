@@ -69,11 +69,7 @@ void ThreadPool::pool_worker() {
         Task task = m_task_queue.front();
         m_task_queue.pop();
     
-        queue_lock.unlock();
-
         m_log_func(task.info, task.level);
-
-        queue_lock.lock();
         
         m_tasks_remaining--;
         if (m_tasks_remaining ==0) {
