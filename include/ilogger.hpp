@@ -1,8 +1,8 @@
 #ifndef LH_ILOGGER_H
 #define LH_ILOGGER_H
 
-#include "log_level.h"
-#include "log.h"
+#include "log_level.hpp"
+#include "log.hpp"
 #include <string_view>
 
 class ILogger {

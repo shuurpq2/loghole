@@ -1,7 +1,7 @@
 #ifndef LH_FILE_LOGGER_H
 #define LH_FILE_LOGGER_H
 
-#include "ilogger.h"
+#include "ilogger.hpp"
 #include <string>
 
 class FileLogger : public ILogger {

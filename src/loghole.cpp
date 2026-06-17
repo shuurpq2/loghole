@@ -1,6 +1,6 @@
-#include "loghole.h"
-#include "debug.h"
-#include "log.h"
+#include "loghole.hpp"
+#include "debug.hpp"
+#include "log.hpp"
 #include <iostream>
 #include <algorithm>
 

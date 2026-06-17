@@ -1,7 +1,7 @@
 #ifndef LH_THREAD_POOL_H
 #define LH_THREAD_POOL_H
 
-#include "log.h"
+#include "log.hpp"
 #include <queue>
 #include <thread>
 #include <mutex>

@@ -3,9 +3,9 @@
 
 #include <vector>
 #include <memory>
-#include "ilogger.h"
-#include "log_level.h"
-#include "thread_pool.h"
+#include "ilogger.hpp"
+#include "log_level.hpp"
+#include "thread_pool.hpp"
 
 class Loghole {
 private:

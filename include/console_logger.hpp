@@ -1,8 +1,8 @@
 #ifndef LH_CONSOLE_LOGGER_H
 #define LH_CONSOLE_LOGGER_H
 
-#include "ilogger.h"
-#include "log_level.h"
+#include "ilogger.hpp"
+#include "log_level.hpp"
 
 class ConsoleLogger : public ILogger {
 public:

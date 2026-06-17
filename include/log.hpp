@@ -3,8 +3,8 @@
 
 #include <functional>
 #include <string>
-#include <log_level.h>
 #include <chrono>
+#include "log_level.hpp"
 
 class Log {
 private:

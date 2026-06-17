@@ -1,4 +1,4 @@
-#include "console_logger.h"
+#include "console_logger.hpp"
 #include <iostream>
 
 void ConsoleLogger::log(Log& log) {
