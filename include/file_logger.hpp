@@ -9,9 +9,11 @@ private:
     std::string m_file_path;
 
 public:
-    FileLogger(std::string file_path);
+    FileLogger(std::string file_path = "");
 
     void log(Log& log) override;
+
+    void set_file_path(std::string file_path);
 };
 
 #endif

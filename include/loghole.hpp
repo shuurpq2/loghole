@@ -7,6 +7,7 @@
 #include "log.hpp"
 #include "console_logger.hpp"
 #include "file_logger.hpp"
+#include "logger_factory.hpp"
 #include <vector>
 #include <memory>
 

@@ -20,3 +20,7 @@ void FileLogger::log(Log& log) {
         std::cerr << "Error while opening file \"" + m_file_path + "\"" << std::endl;
     }
 }
+
+void FileLogger::set_file_path(std::string file_path) {
+    m_file_path = file_path;
+}
