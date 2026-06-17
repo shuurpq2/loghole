@@ -1,6 +1,4 @@
 #include "loghole.hpp"
-#include "debug.hpp"
-#include "log.hpp"
 #include <iostream>
 #include <algorithm>
 

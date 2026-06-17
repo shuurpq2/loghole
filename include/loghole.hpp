@@ -1,11 +1,14 @@
-#ifndef LOGHOLE_H
-#define LOGHOLE_H
+#pragma once
 
-#include <vector>
-#include <memory>
 #include "ilogger.hpp"
 #include "log_level.hpp"
 #include "thread_pool.hpp"
+#include "debug.hpp"
+#include "log.hpp"
+#include "console_logger.hpp"
+#include "file_logger.hpp"
+#include <vector>
+#include <memory>
 
 class Loghole {
 private:
@@ -29,5 +32,3 @@ public:
 
     void detach(std::shared_ptr<ILogger> logger);
 };
-
-#endif
