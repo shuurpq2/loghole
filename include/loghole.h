@@ -17,11 +17,13 @@ private:
 public:
     Loghole(int num_threads = 0);
 
+    ~Loghole();
+
     void log(std::string_view info, LogLevel level = LogLevel::INFO);
 
     void async_log(std::string_view info, LogLevel level = LogLevel::INFO);
 
-    void async_logs_wait();
+    void async_logs_await();
 
     void attach(std::shared_ptr<ILogger> logger);
 

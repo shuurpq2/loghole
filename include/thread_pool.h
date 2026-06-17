@@ -22,12 +22,14 @@ private:
     std::queue<Task> m_task_queue;
     int m_tasks_remaining = 0;
     std::mutex m_queue_mutex;
-    std::vector<std::thread*> m_threads;
+    std::vector<std::thread> m_threads;
 
     std::function<void(std::string_view, LogLevel)> m_log_func;
 
 public:
     ThreadPool(const std::function<void(std::string_view, LogLevel)>& log_func, int num_threads = 1);
+
+    ~ThreadPool();
 
     void pool_init();
 

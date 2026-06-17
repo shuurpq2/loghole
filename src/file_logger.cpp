@@ -17,6 +17,6 @@ void FileLogger::log(Log& log) {
         file << log.formatted() << "\n";
         file.close();
     } else {
-        std::cerr << "Error while opening file {}\n", m_file_path;
+        std::cerr << "Error while opening file \"" + m_file_path + "\"" << std::endl;
     }
 }

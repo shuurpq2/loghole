@@ -7,17 +7,25 @@ ThreadPool::ThreadPool(const std::function<void(std::string_view, LogLevel)>& lo
     
 }
 
+ThreadPool::~ThreadPool() {
+    pool_free();
+}
+
 void ThreadPool::pool_init() {
+    LH_DEBUG_PRINT("Initializing new thread pool");
+
     std::unique_lock<std::mutex> queue_lock(m_queue_mutex);
 
-    for (int i = 0; i < m_num_threads; i++) {
-        std::thread new_thread(&ThreadPool::pool_worker, this);
-        m_threads.push_back(&new_thread);
-        new_thread.detach();
+    for (int i = 0; i < m_num_threads; i++) {        
+        m_threads.emplace_back(&ThreadPool::pool_worker, this);
+
+        LH_DEBUG_PRINT("New thread with id \"" << m_threads[i].get_id() << "\" created");
     }
 }
 
 void ThreadPool::pool_free() {
+    LH_DEBUG_PRINT("Clearing thread pool " << this);
+
     pool_wait();
 
     std::unique_lock<std::mutex> queue_lock(m_queue_mutex);
@@ -26,11 +34,15 @@ void ThreadPool::pool_free() {
     m_pool_has_tasks.notify_all();
 
     for (int i = 0; i < m_num_threads; i++) {
-        m_threads[i]->join();
+        LH_DEBUG_PRINT("Deleting thread with id \"" << m_threads[i].get_id() << "\"");
+
+        m_threads[i].join();
     }
 }
 
 void ThreadPool::pool_add_task(std::string_view info, LogLevel level) {
+    LH_DEBUG_PRINT("New pool task with level \"" << log_level_to_console_colored_string(level) << "\": " << info << "\"");
+
     Task new_task = {.info=std::string(info), .level=level};
 
     std::unique_lock<std::mutex> queue_lock(m_queue_mutex);
@@ -49,14 +61,14 @@ void ThreadPool::pool_worker() {
             m_pool_has_tasks.wait(queue_lock);
         }
 
-        if (m_stop_pool) {
+        if (m_stop_pool == 1) {
             queue_lock.unlock();
             break;
         }
 
         Task task = m_task_queue.front();
         m_task_queue.pop();
-
+    
         queue_lock.unlock();
 
         m_log_func(task.info, task.level);
@@ -73,6 +85,8 @@ void ThreadPool::pool_worker() {
 }
 
 void ThreadPool::pool_wait() {
+    LH_DEBUG_PRINT("Awaiting pool");
+
     std::unique_lock<std::mutex> queue_lock(m_queue_mutex);
     
     while (m_tasks_remaining > 0) {

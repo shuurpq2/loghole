@@ -7,13 +7,19 @@
 Loghole::Loghole(int num_threads)
     
 {
+    LH_DEBUG_PRINT("Constructing new Loghole instance with number of threads: " << num_threads);
+
     if (num_threads > 0) {
         m_thread_pool = new ThreadPool([this](std::string_view info, LogLevel level) {
             this->log(info, level);
-        }, 1);
+        }, num_threads);
 
         m_thread_pool->pool_init();
     }
+}
+
+Loghole::~Loghole() {
+    delete m_thread_pool;
 }
 
 int Loghole::get_logger_idx(std::shared_ptr<ILogger> logger) {
@@ -40,26 +46,34 @@ void Loghole::log(std::string_view info, LogLevel level) {
 }
 
 void Loghole::async_log(std::string_view info, LogLevel level) {
-    m_thread_pool->pool_add_task(info, level);
+    if (m_thread_pool != nullptr) {
+        m_thread_pool->pool_add_task(info, level);
+    } else {
+        std::cerr << "Can't async_log because number of threads < 1" << std::endl;
+    }
 }
 
-void Loghole::async_logs_wait() {
-    m_thread_pool->pool_wait();
+void Loghole::async_logs_await() {
+    if (m_thread_pool != nullptr) {
+        m_thread_pool->pool_wait();
+    } else {
+        std::cerr << "Can't async_logs_await because number of threads < 1" << std::endl;
+    }
 }
 
 void Loghole::attach(std::shared_ptr<ILogger> logger) {
     if (get_logger_idx(logger) == -1) {
         m_loggers.push_back(logger);
 
-        LH_DEBUG_PRINT(logger << " attached to " << this);
+        LH_DEBUG_PRINT("Logger " << logger << " attached to " << this);
 
         return;
     }
 
-    LH_DEBUG_PRINT(logger << " is already attached to " << this);
+    LH_DEBUG_PRINT("Logger " << logger << " is already attached to " << this);
 }
 
 void Loghole::detach(std::shared_ptr<ILogger> logger) {
     m_loggers.erase(std::remove(m_loggers.begin(), m_loggers.end(), logger), m_loggers.end());
-    LH_DEBUG_PRINT("Successfully detached " << logger << " from " << this);
+    LH_DEBUG_PRINT("Logger " << logger << " detached from " << this);
 }
