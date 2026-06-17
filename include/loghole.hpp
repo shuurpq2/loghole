@@ -15,7 +15,7 @@ private:
     ThreadPool* m_thread_pool = nullptr;
     std::vector<std::shared_ptr<ILogger>> m_loggers;
 
-    int get_logger_idx(std::shared_ptr<ILogger> logger);
+    int get_logger_idx(std::shared_ptr<ILogger> logger_sptr);
 
 public:
     Loghole(int num_threads = 0);
@@ -28,7 +28,7 @@ public:
 
     void async_logs_await();
 
-    void attach(std::shared_ptr<ILogger> logger);
+    void attach(std::shared_ptr<ILogger> logger_sptr);
 
-    void detach(std::shared_ptr<ILogger> logger);
+    void detach(std::shared_ptr<ILogger> logger_sptr);
 };
