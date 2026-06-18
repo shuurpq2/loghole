@@ -8,7 +8,7 @@ Loghole::Loghole(int num_threads)
     LH_DEBUG_PRINT("Constructing new Loghole instance with number of threads: " << num_threads);
 
     if (num_threads > 0) {
-        m_thread_pool = new ThreadPool([this](std::string_view info, LogLevel level) {
+        m_thread_pool = new ThreadPool([this](std::string info, LogLevel level) {
             this->log(info, level);
         }, num_threads);
 
@@ -33,7 +33,7 @@ int Loghole::get_logger_idx(std::shared_ptr<ILogger> logger_sptr) {
     return idx;
 }
 
-void Loghole::log(std::string_view info, LogLevel level) {
+void Loghole::log(std::string info, LogLevel level) {
     LH_DEBUG_PRINT("New log with level \"" << log_level_to_console_colored_string(level) << "\": " << info);
 
     Log log(info, level);
@@ -43,7 +43,7 @@ void Loghole::log(std::string_view info, LogLevel level) {
     }
 }
 
-void Loghole::async_log(std::string_view info, LogLevel level) {
+void Loghole::async_log(std::string info, LogLevel level) {
     if (m_thread_pool != nullptr) {
         m_thread_pool->pool_add_task(info, level);
     } else {

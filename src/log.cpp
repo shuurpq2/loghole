@@ -15,7 +15,7 @@ std::string get_timestamp() {
     return ss.str();
 }
 
-Log::Log(std::string_view info, LogLevel level)
+Log::Log(std::string info, LogLevel level)
     :m_info(info), m_level(level)
 {
     m_timestamp = get_timestamp();

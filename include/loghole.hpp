@@ -23,9 +23,9 @@ public:
 
     ~Loghole();
 
-    void log(std::string_view info, LogLevel level = LogLevel::INFO);
+    void log(std::string info, LogLevel level = LogLevel::INFO);
 
-    void async_log(std::string_view info, LogLevel level = LogLevel::INFO);
+    void async_log(std::string info, LogLevel level = LogLevel::INFO);
 
     void async_logs_await();
 

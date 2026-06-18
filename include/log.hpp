@@ -13,7 +13,7 @@ private:
     std::string m_timestamp;
 
 public:
-    Log(std::string_view info, LogLevel level);
+    Log(std::string info, LogLevel level);
 
     std::string formatted(const std::function<std::string(LogLevel)>& level_to_string_func = log_level_to_string);
 
