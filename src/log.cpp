@@ -15,13 +15,13 @@ std::string get_timestamp() {
     return ss.str();
 }
 
-Log::Log(std::string info, LogLevel level)
+Log::Log(const std::string info, const LogLevel level)
     :m_info(info), m_level(level)
 {
     m_timestamp = get_timestamp();
 }
 
-std::string Log::formatted(const std::function<std::string(LogLevel)>& level_to_string_func) {
+std::string Log::formatted(const std::function<std::string(LogLevel)>& level_to_string_func) const {
     std::string res = m_timestamp + " [" + level_to_string_func(m_level) + "] " + m_info;
 
     return res;

@@ -13,11 +13,13 @@ private:
     std::string m_timestamp;
 
 public:
-    Log(std::string info, LogLevel level);
+    Log(const std::string info, const LogLevel level);
 
-    std::string formatted(const std::function<std::string(LogLevel)>& level_to_string_func = log_level_to_string);
+    std::string formatted(const std::function<std::string(LogLevel)>& level_to_string_func = log_level_to_string) const;
 
-    LogLevel get_level() {return m_level;}
+    std::string get_info() const {return m_info;}
+
+    LogLevel get_level() const {return m_level;}
 };
 
 #endif
