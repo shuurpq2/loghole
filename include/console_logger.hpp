@@ -5,8 +5,8 @@
 #include "log_level.hpp"
 
 class ConsoleLogger : public ILogger {
-public:
-    void log(Log& log) override;
+private:
+    void m_log(Log& log) override;
 };
 
 #endif

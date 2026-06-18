@@ -11,7 +11,7 @@ private:
 public:
     FileLogger(std::string file_path = "");
 
-    void log(Log& log) override;
+    void m_log(Log& log) override;
 
     void set_file_path(std::string file_path);
 };

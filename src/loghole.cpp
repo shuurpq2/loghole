@@ -39,7 +39,7 @@ void Loghole::log(std::string_view info, LogLevel level) {
     Log log(info, level);
 
     for (int i = 0; i < m_loggers.size(); i++) {
-        m_loggers[i]->prep_to_log(log);
+        m_loggers[i]->log(log);
     }
 }
 

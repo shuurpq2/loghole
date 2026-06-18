@@ -9,7 +9,7 @@ FileLogger::FileLogger(std::string file_path)
 
 }
 
-void FileLogger::log(Log& log) {
+void FileLogger::m_log(Log& log) {
     LH_DEBUG_PRINT("Opening file \"" + m_file_path + "\" to log");
 
     std::ofstream file(m_file_path, std::ios::app);
