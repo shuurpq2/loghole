@@ -1,7 +1,7 @@
 #include "thread_pool.hpp"
 #include "debug.hpp"
 
-ThreadPool::ThreadPool(const std::function<void(std::string_view, LogLevel)>& log_func, int num_threads)
+ThreadPool::ThreadPool(const std::function<void(std::string, LogLevel)>& log_func, int num_threads)
     : m_log_func(log_func), m_num_threads(num_threads)
 {
     
@@ -40,7 +40,7 @@ void ThreadPool::pool_free() {
     }
 }
 
-void ThreadPool::pool_add_task(std::string_view info, LogLevel level) {
+void ThreadPool::pool_add_task(std::string info, LogLevel level) {
     LH_DEBUG_PRINT("New pool task with level \"" << log_level_to_console_colored_string(level) << "\": " << info << "\"");
 
     Task new_task = {.info=std::string(info), .level=level};
