@@ -1,10 +1,10 @@
 #ifndef LH_FILE_LOGGER_H
 #define LH_FILE_LOGGER_H
 
-#include "ilogger.hpp"
+#include "base_logger.hpp"
 #include <string>
 
-class FileLogger : public ILogger {
+class FileLogger : public BaseLogger {
 private:
     std::string m_file_path;
 

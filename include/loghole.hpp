@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ilogger.hpp"
+#include "base_logger.hpp"
 #include "log_level.hpp"
 #include "thread_pool.hpp"
 #include "debug.hpp"
@@ -14,9 +14,9 @@
 class Loghole {
 private:
     ThreadPool* m_thread_pool = nullptr;
-    std::vector<std::shared_ptr<ILogger>> m_loggers;
+    std::vector<std::shared_ptr<BaseLogger>> m_loggers;
 
-    int get_logger_idx(std::shared_ptr<ILogger> logger_sptr);
+    int get_logger_idx(std::shared_ptr<BaseLogger> logger_sptr);
 
 public:
     Loghole(int num_threads = 0);
@@ -29,7 +29,7 @@ public:
 
     void async_logs_await();
 
-    void attach(std::shared_ptr<ILogger> logger_sptr);
+    void attach(std::shared_ptr<BaseLogger> logger_sptr);
 
-    void detach(std::shared_ptr<ILogger> logger_sptr);
+    void detach(std::shared_ptr<BaseLogger> logger_sptr);
 };

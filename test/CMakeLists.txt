@@ -21,6 +21,7 @@ add_executable(a.out
     ../src/log.cpp
     ../src/loghole.cpp
     ../src/thread_pool.cpp
+    ../src/base_logger.cpp
     log_test.cpp
     logger_factory_test.cpp
     file_logger_test.cpp

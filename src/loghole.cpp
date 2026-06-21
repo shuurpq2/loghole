@@ -20,7 +20,7 @@ Loghole::~Loghole() {
     delete m_thread_pool;
 }
 
-int Loghole::get_logger_idx(std::shared_ptr<ILogger> logger_sptr) {
+int Loghole::get_logger_idx(std::shared_ptr<BaseLogger> logger_sptr) {
     int idx = -1;
 
     for (int i = 0; i < m_loggers.size(); i++) {
@@ -59,7 +59,7 @@ void Loghole::async_logs_await() {
     }
 }
 
-void Loghole::attach(std::shared_ptr<ILogger> logger_sptr) {
+void Loghole::attach(std::shared_ptr<BaseLogger> logger_sptr) {
     if (get_logger_idx(logger_sptr) == -1) {
         m_loggers.push_back(logger_sptr);
 
@@ -71,7 +71,7 @@ void Loghole::attach(std::shared_ptr<ILogger> logger_sptr) {
     LH_DEBUG_PRINT("Logger " << logger_sptr << " is already attached to " << this);
 }
 
-void Loghole::detach(std::shared_ptr<ILogger> logger_sptr) {
+void Loghole::detach(std::shared_ptr<BaseLogger> logger_sptr) {
     m_loggers.erase(std::remove(m_loggers.begin(), m_loggers.end(), logger_sptr), m_loggers.end());
     LH_DEBUG_PRINT("Logger " << logger_sptr << " detached from " << this);
 }

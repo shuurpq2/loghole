@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include <ilogger.hpp>
+#include <base_logger.hpp>
 
 class LoggerFactory {
 public:
