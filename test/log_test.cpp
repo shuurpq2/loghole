@@ -1,5 +1,5 @@
-#include <gtest/gtest.h>
 #include "loghole.hpp"
+#include <gtest/gtest.h>
 
 TEST(LogTestSuite, Constructor_SavesDataCorrectly) {
     std::string log_info = "SOME FATAL ERROR INFO";

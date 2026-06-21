@@ -23,7 +23,6 @@ private:
     int m_tasks_remaining = 0;
     std::mutex m_queue_mutex;
     std::vector<std::thread> m_threads;
-
     std::function<void(std::string, LogLevel)> m_log_func;
 
 public:

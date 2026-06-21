@@ -22,6 +22,9 @@ add_executable(a.out
     ../src/loghole.cpp
     ../src/thread_pool.cpp
     log_test.cpp
+    logger_factory_test.cpp
+    file_logger_test.cpp
+    thread_pool_test.cpp
 )
 
 target_include_directories(a.out PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/../include)

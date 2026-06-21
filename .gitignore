@@ -2,4 +2,4 @@
 build
 testsk
 *.log
-test
+.vscode

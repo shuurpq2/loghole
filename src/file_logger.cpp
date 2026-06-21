@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 
-FileLogger::FileLogger(std::string file_path)
+FileLogger::FileLogger(const std::string& file_path)
     :m_file_path(file_path)
 {
 
@@ -19,8 +19,4 @@ void FileLogger::m_log(Log& log) {
     } else {
         std::cerr << "Error while opening file \"" + m_file_path + "\"" << std::endl;
     }
-}
-
-void FileLogger::set_file_path(std::string file_path) {
-    m_file_path = file_path;
 }
