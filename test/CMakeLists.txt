@@ -26,6 +26,7 @@ add_executable(a.out
     logger_factory_test.cpp
     file_logger_test.cpp
     thread_pool_test.cpp
+    base_logger_test.cpp
 )
 
 target_include_directories(a.out PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/../include)

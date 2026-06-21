@@ -21,3 +21,7 @@ std::string log_level_to_console_colored_string(LogLevel level) {
         default: return log_level_to_string(level);
     }
 }
+
+bool is_log_level_valid(LogLevel level) {
+    return level != LogLevel::NONE && level != LogLevel::COUNT;
+}

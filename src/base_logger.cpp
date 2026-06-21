@@ -1,17 +1,48 @@
 #include "base_logger.hpp"
 
+bool BaseLogger::m_is_level_allowed(LogLevel level) {
+    for (LogLevel l : m_allowed_levels) {
+        if (l == level) return true;
+    }
+
+    return false;
+}
+
 void BaseLogger::log(Log& log) {
-    if (log.get_level() >= m_min_log_level && log.get_level() <= m_max_log_level) {
-        return m_log(log);
+    if (m_is_level_allowed(log.get_level())) {
+        m_log(log);
     }
 }
 
-void BaseLogger::set_log_level(LogLevel min_level, LogLevel max_level) {
-    if (min_level != LogLevel::NONE) {
-        m_min_log_level = min_level;
+void BaseLogger::log(std::string info, LogLevel level)  {
+    Log log(std::move(info), level);
+    this->log(log);
+}
+
+void BaseLogger::set_log_level(LogLevel min_level) {
+    if (!is_log_level_valid(min_level)) {
+        throw "Need valid LogLevel";
     }
 
-    if (max_level != LogLevel::NONE) {
-        m_max_log_level = max_level;
+    m_allowed_levels.clear();
+    
+    for (int i = static_cast<int>(min_level); i < static_cast<int>(LogLevel::COUNT); i++) {
+        m_allowed_levels.push_back(static_cast<LogLevel>(i));
     }
+
+    LH_DEBUG_PRINT("New min log level set for logger " << this << ": \"" << log_level_to_console_colored_string(min_level) << "\"");
+}
+
+void BaseLogger::set_log_level(LogLevel min_level, LogLevel max_level) {
+    if (!(is_log_level_valid(min_level) && is_log_level_valid(max_level))) {
+        throw "Need valid LogLevel";
+    }
+
+    m_allowed_levels.clear();
+
+    for (int i = static_cast<int>(min_level); i <= static_cast<int>(max_level); i++) {
+        m_allowed_levels.push_back(static_cast<LogLevel>(i));
+    }
+
+    LH_DEBUG_PRINT("New allowed log levels set for logger " << this << ": from \"" << log_level_to_console_colored_string(min_level) << "\" to \"" << log_level_to_console_colored_string(max_level) << "\"");
 }
