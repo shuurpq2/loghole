@@ -19,4 +19,6 @@ public:
     std::string get_info() const {return m_info;}
 
     LogLevel get_level() const {return m_level;}
+
+    std::string get_timestamp() const {return m_timestamp;}
 };

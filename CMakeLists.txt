@@ -14,7 +14,12 @@ add_library(loghole STATIC
         src/log.cpp
         src/loghole.cpp
         src/thread_pool.cpp
+        src/utils.cpp
 )
+
+find_package(SQLite3 REQUIRED)
+
+target_link_libraries(loghole PUBLIC sqlite3)
 
 target_compile_definitions(loghole PRIVATE $<$<CONFIG:Debug>:LH_DEBUG>)
 

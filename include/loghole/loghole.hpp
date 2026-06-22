@@ -1,12 +1,13 @@
 #pragma once
 
 #include "loghole/loggers/base_logger.hpp"
+#include "loghole/loggers/console_logger.hpp"
+#include "loghole/loggers/file_logger.hpp"
+#include "loghole/loggers/sqlite_db_logger.hpp"
 #include "loghole/log_level.hpp"
 #include "loghole/thread_pool.hpp"
 #include "loghole/debug.hpp"
 #include "loghole/log.hpp"
-#include "loghole/loggers/console_logger.hpp"
-#include "loghole/loggers/file_logger.hpp"
 #include "loghole/logger_factory.hpp"
 #include <vector>
 #include <memory>
