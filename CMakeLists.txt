@@ -12,7 +12,7 @@ add_library(loghole STATIC
         src/loghole.cpp
         src/thread_pool.cpp
         src/base_logger.cpp
-        src/base_db_logger.cpp
+        src/sql_db_logger.cpp
 )
 
 target_compile_definitions(loghole PRIVATE $<$<CONFIG:Debug>:LH_DEBUG>)

@@ -1,5 +1,4 @@
-#ifndef LH_LOG_LEVEL_H
-#define LH_LOG_LEVEL_H
+#pragma once
 
 #include <string>
 
@@ -18,5 +17,3 @@ std::string log_level_to_string(LogLevel level);
 std::string log_level_to_console_colored_string(LogLevel level);
 
 bool is_log_level_valid(LogLevel level);
-
-#endif

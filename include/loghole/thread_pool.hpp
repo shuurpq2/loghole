@@ -1,7 +1,6 @@
-#ifndef LH_THREAD_POOL_H
-#define LH_THREAD_POOL_H
+#pragma once
 
-#include "log.hpp"
+#include "loghole/log.hpp"
 #include <queue>
 #include <thread>
 #include <mutex>
@@ -40,5 +39,3 @@ public:
 
     void pool_wait();
 };
-
-#endif

@@ -1,4 +1,4 @@
-#include "log.hpp"
+#include "loghole/log.hpp"
 #include <iomanip>
 #include <iostream>
 
@@ -22,7 +22,7 @@ Log::Log(const std::string info, const LogLevel level)
         std::cerr << "Error: invalid log level" << std::endl;
         exit(1);
     }
-    
+
     m_timestamp = get_timestamp();
 }
 

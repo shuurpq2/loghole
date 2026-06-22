@@ -1,10 +1,9 @@
-#ifndef LH_LOG_H
-#define LH_LOG_H
+#pragma once
 
 #include <functional>
 #include <string>
 #include <chrono>
-#include "log_level.hpp"
+#include "loghole/log_level.hpp"
 
 class Log {
 private:
@@ -21,5 +20,3 @@ public:
 
     LogLevel get_level() const {return m_level;}
 };
-
-#endif

@@ -1,5 +1,5 @@
-#include "thread_pool.hpp"
-#include "debug.hpp"
+#include "loghole/thread_pool.hpp"
+#include "loghole/debug.hpp"
 
 ThreadPool::ThreadPool(const std::function<void(std::string, LogLevel)>& log_func, int num_threads)
     : m_log_func(log_func), m_num_threads(num_threads)

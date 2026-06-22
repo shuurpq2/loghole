@@ -1,5 +1,5 @@
-#include "file_logger.hpp"
-#include "debug.hpp"
+#include "loghole/file_logger.hpp"
+#include "loghole/debug.hpp"
 #include <iostream>
 #include <fstream>
 

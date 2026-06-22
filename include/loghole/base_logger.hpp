@@ -1,9 +1,9 @@
 #pragma once
 
-#include "log_level.hpp"
-#include "log.hpp"
+#include "loghole/log_level.hpp"
+#include "loghole/log.hpp"
+#include "loghole/debug.hpp"
 #include <string_view>
-#include "debug.hpp"
 
 class BaseLogger {
 protected:

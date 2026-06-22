@@ -1,7 +1,6 @@
-#ifndef LH_FILE_LOGGER_H
-#define LH_FILE_LOGGER_H
+#pragma once
 
-#include "base_logger.hpp"
+#include "loghole/base_logger.hpp"
 #include <string>
 
 class FileLogger : public BaseLogger {
@@ -17,5 +16,3 @@ public:
 
     std::string get_file_path() const {return m_file_path;}
 };
-
-#endif

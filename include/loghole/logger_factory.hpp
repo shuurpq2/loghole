@@ -1,8 +1,8 @@
 #pragma once
 
-#include "debug.hpp"
+#include "loghole/debug.hpp"
+#include "loghole/base_logger.hpp"
 #include <memory>
-#include <base_logger.hpp>
 
 class LoggerFactory {
 public:
