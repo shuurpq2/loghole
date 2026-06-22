@@ -19,7 +19,7 @@ void ThreadPool::pool_init() {
     for (int i = 0; i < m_num_threads; i++) {        
         m_threads.emplace_back(&ThreadPool::pool_worker, this);
 
-        LH_DEBUG_PRINT("New thread with id \"" << m_threads[i].get_id() << "\" created");
+        LH_DEBUG_PRINT("New thread with id " << m_threads[i].get_id() << " created");
     }
 }
 
@@ -34,7 +34,7 @@ void ThreadPool::pool_free() {
     m_pool_has_tasks.notify_all();
 
     for (int i = 0; i < m_num_threads; i++) {
-        LH_DEBUG_PRINT("Deleting thread with id \"" << m_threads[i].get_id() << "\"");
+        LH_DEBUG_PRINT("Deleting thread with id " << m_threads[i].get_id());
 
         m_threads[i].join();
     }

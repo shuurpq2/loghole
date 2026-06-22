@@ -21,19 +21,16 @@ Loghole::~Loghole() {
 }
 
 int Loghole::get_logger_idx(std::shared_ptr<BaseLogger> logger_sptr) {
-    int idx = -1;
-
     for (int i = 0; i < m_loggers.size(); i++) {
         if (m_loggers[i] == logger_sptr) {
-            idx = i;
-            break;
+            return i;
         }
     }
 
-    return idx;
+    return -1;
 }
 
-void Loghole::log(std::string info, LogLevel level = LogLevel::INFO) {
+void Loghole::log(std::string info, LogLevel level) {
     LH_DEBUG_PRINT("New log with level \"" << log_level_to_console_colored_string(level) << "\": " << info);
 
     Log log(std::move(info), level);
@@ -64,11 +61,7 @@ void Loghole::attach(std::shared_ptr<BaseLogger> logger_sptr) {
         m_loggers.push_back(logger_sptr);
 
         LH_DEBUG_PRINT("Logger " << logger_sptr << " attached to " << this);
-
-        return;
     }
-
-    LH_DEBUG_PRINT("Logger " << logger_sptr << " is already attached to " << this);
 }
 
 void Loghole::detach(std::shared_ptr<BaseLogger> logger_sptr) {

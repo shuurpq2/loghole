@@ -21,7 +21,8 @@ void BaseLogger::log(std::string info, LogLevel level)  {
 
 void BaseLogger::set_log_level(LogLevel min_level) {
     if (!is_log_level_valid(min_level)) {
-        throw "Need valid LogLevel";
+        std::cerr << "Error: invalid log level" << std::endl;
+        exit(1);
     }
 
     m_allowed_levels.clear();
@@ -35,7 +36,8 @@ void BaseLogger::set_log_level(LogLevel min_level) {
 
 void BaseLogger::set_log_level(LogLevel min_level, LogLevel max_level) {
     if (!(is_log_level_valid(min_level) && is_log_level_valid(max_level))) {
-        throw "Need valid LogLevel";
+        std::cerr << "Error: invalid log level" << std::endl;
+        exit(1);
     }
 
     m_allowed_levels.clear();

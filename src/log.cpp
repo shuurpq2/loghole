@@ -18,6 +18,11 @@ std::string get_timestamp() {
 Log::Log(const std::string info, const LogLevel level)
     :m_info(info), m_level(level)
 {
+    if (!is_log_level_valid(level)) {
+        std::cerr << "Error: invalid log level" << std::endl;
+        exit(1);
+    }
+    
     m_timestamp = get_timestamp();
 }
 
