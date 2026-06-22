@@ -1,7 +1,7 @@
 #pragma once
 
 #include "loghole/debug.hpp"
-#include "loghole/base_logger.hpp"
+#include "loghole/loggers/base_logger.hpp"
 #include <memory>
 
 class LoggerFactory {

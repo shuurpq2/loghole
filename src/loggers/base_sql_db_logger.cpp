@@ -1,0 +1,1 @@
+#include "loghole/loggers/base_sql_db_logger.hpp"

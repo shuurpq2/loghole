@@ -1,6 +1,6 @@
 #pragma once
 
-#include "loghole/base_logger.hpp"
+#include "loghole/loggers/base_logger.hpp"
 #include <string>
 
 class FileLogger : public BaseLogger {

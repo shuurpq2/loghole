@@ -15,14 +15,15 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 add_executable(a.out
-    ../src/console_logger.cpp
-    ../src/file_logger.cpp
+    ../src/loggers/console_logger.cpp
+    ../src/loggers/file_logger.cpp
+    ../src/loggers/base_logger.cpp
+    ../src/loggers/base_sql_db_logger.cpp
+    ../src/loggers/sqlite_db_logger.cpp
     ../src/log_level.cpp
     ../src/log.cpp
     ../src/loghole.cpp
     ../src/thread_pool.cpp
-    ../src/base_logger.cpp
-    ../src/sql_db_logger.cpp
     log_test.cpp
     logger_factory_test.cpp
     file_logger_test.cpp

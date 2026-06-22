@@ -1,4 +1,4 @@
-#include "loghole/base_logger.hpp"
+#include "loghole/loggers/base_logger.hpp"
 
 bool BaseLogger::m_is_level_allowed(LogLevel level) {
     for (LogLevel l : m_allowed_levels) {

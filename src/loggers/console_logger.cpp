@@ -1,4 +1,4 @@
-#include "loghole/console_logger.hpp"
+#include "loghole/loggers/console_logger.hpp"
 #include <iostream>
 
 void ConsoleLogger::m_log(Log& log) {
