@@ -14,7 +14,7 @@ protected:
     }
 };
 
-TEST_F(BaseLoggerTestFixture, SetLogLevel_WithOneParam_AllowedLevelsShouldBeAllFromGiven) {
+TEST_F(BaseLoggerTestFixture, SetLogLevel_IntendedUseWithOneParam_AllowedLevelsShouldBeAllFromGiven) {
     LogLevel min_log_level = LogLevel::WARNING;
     std::vector<LogLevel> expect_allowed_levels = {LogLevel::WARNING, LogLevel::ERROR, LogLevel::FATAL};
 
@@ -23,7 +23,7 @@ TEST_F(BaseLoggerTestFixture, SetLogLevel_WithOneParam_AllowedLevelsShouldBeAllF
     EXPECT_EQ(base_logger->get_allowed_levels(), expect_allowed_levels);
 }
 
-TEST_F(BaseLoggerTestFixture, SetLogLevel_WithTwoParams_AllowedLevelsShouldBeFromMinToMax) {
+TEST_F(BaseLoggerTestFixture, SetLogLevel_IntendedUseWithTwoParams_AllowedLevelsShouldBeFromMinToMax) {
     LogLevel min_log_level = LogLevel::INFO;
     LogLevel max_log_level = LogLevel::ERROR;
     std::vector<LogLevel> expect_allowed_levels = {LogLevel::INFO, LogLevel::WARNING, LogLevel::ERROR};
@@ -33,7 +33,7 @@ TEST_F(BaseLoggerTestFixture, SetLogLevel_WithTwoParams_AllowedLevelsShouldBeFro
     EXPECT_EQ(base_logger->get_allowed_levels(), expect_allowed_levels);
 }
 
-TEST_F(BaseLoggerTestFixture, SetLogLevel_WithThreeParams_AllowedLevelsShouldBeParams) {
+TEST_F(BaseLoggerTestFixture, SetLogLevel_IntendedUseWithThreeParams_AllowedLevelsShouldBeParams) {
     std::vector<LogLevel> expect_allowed_levels = {LogLevel::INFO, LogLevel::ERROR, LogLevel::DEBUG}; 
 
     base_logger->set_log_level(expect_allowed_levels[0], expect_allowed_levels[1], expect_allowed_levels[2]);
@@ -41,7 +41,7 @@ TEST_F(BaseLoggerTestFixture, SetLogLevel_WithThreeParams_AllowedLevelsShouldBeP
     EXPECT_EQ(base_logger->get_allowed_levels(), expect_allowed_levels);
 }
 
-TEST_F(BaseLoggerTestFixture, AddLogLevel_WithNormalParam_AddNewAllowedLevel) {
+TEST_F(BaseLoggerTestFixture, AddLogLevel_IntendedUse_AddNewAllowedLevel) {
     std::vector<LogLevel> expect_allowed_levels = {LogLevel::INFO, LogLevel::ERROR};
 
     base_logger->set_log_level(expect_allowed_levels[0], expect_allowed_levels[0]);

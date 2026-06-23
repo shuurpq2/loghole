@@ -3,3 +3,4 @@ build
 testsk
 *.log
 .vscode
+*.db

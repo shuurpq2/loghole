@@ -1,7 +1,7 @@
 #include "loghole/loghole.hpp"
 #include <gtest/gtest.h>
 
-TEST(LoggerFactoryTestSuite, CreateLogger_ReturningCorrectLogger) {
+TEST(LoggerFactoryTestSuite, CreateLogger_IntendedUse_ReturningCorrectLogger) {
     auto console_logger_sptr = LoggerFactory::create_logger<ConsoleLogger>();
 
     std::string log_file_path = "log_file.log";

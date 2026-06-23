@@ -1,7 +1,7 @@
 #include "loghole/loghole.hpp"
 #include <gtest/gtest.h>
 
-TEST(LogTestSuite, Constructor_SavesDataCorrectly) {
+TEST(LogTestSuite, Constructor_IntendedUse_SavesDataCorrectly) {
     std::string log_info = "SOME FATAL ERROR INFO";
     LogLevel log_level = LogLevel::FATAL;
 
