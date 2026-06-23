@@ -10,7 +10,7 @@ public:
     static std::shared_ptr<LoggerT> create_logger(Args&&... args) {
         auto new_logger = std::make_shared<LoggerT>(std::forward<Args>(args)...);
 
-        LH_DEBUG_PRINT("Created logger " << new_logger << " with LoggerFactory");
+        LH_DEBUG_PRINT("Created logger " << new_logger << " via LoggerFactory");
 
         return new_logger;
     }

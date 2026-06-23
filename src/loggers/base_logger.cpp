@@ -48,3 +48,11 @@ void BaseLogger::set_log_level(LogLevel min_level, LogLevel max_level) {
 
     LH_DEBUG_PRINT("New allowed log levels set for logger " << this << ": from \"" << log_level_to_console_colored_string(min_level) << "\" to \"" << log_level_to_console_colored_string(max_level) << "\"");
 }
+
+void BaseLogger::add_log_level(LogLevel level) {
+    if (is_log_level_valid(level) && !m_is_level_allowed(level)) {
+        m_allowed_levels.push_back(level);
+
+        LH_DEBUG_PRINT("New allowed log level added for logger " << this << ": \"" << log_level_to_console_colored_string(level) << "\"");
+    }
+}

@@ -15,25 +15,17 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 add_executable(a.out
-    ../src/loggers/console_logger.cpp
-    ../src/loggers/file_logger.cpp
-    ../src/loggers/base_logger.cpp
-    ../src/loggers/base_sql_db_logger.cpp
-    ../src/loggers/sqlite_db_logger.cpp
-    ../src/log_level.cpp
-    ../src/log.cpp
-    ../src/loghole.cpp
-    ../src/thread_pool.cpp
     log_test.cpp
     logger_factory_test.cpp
     file_logger_test.cpp
     thread_pool_test.cpp
     base_logger_test.cpp
+    sqlite_db_logger_test.cpp
 )
 
 target_include_directories(a.out PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
-target_link_libraries(a.out PRIVATE gtest_main)
+target_link_libraries(a.out PRIVATE gtest_main ${CMAKE_CURRENT_SOURCE_DIR}/../build/libloghole.a)
 
 include(GoogleTest)
 gtest_discover_tests(a.out)

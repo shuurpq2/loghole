@@ -6,12 +6,15 @@
 class SqliteDBLogger : public BaseSqlDBLogger {
 private:
     std::string m_file_path;
+    std::string m_tablename;
     sqlite3* m_db;
 
     void m_log(Log& log) override;
 
+    int m_create_table();
+
 public:
-    SqliteDBLogger(std::string file_path);
+    SqliteDBLogger(std::string file_path, std::string m_tablename = "logs");
 
     ~SqliteDBLogger();
 };

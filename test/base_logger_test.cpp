@@ -1,4 +1,4 @@
-#include "loghole.hpp"
+#include "loghole/loghole.hpp"
 #include <gtest/gtest.h>
 
 class BaseLoggerTestFixture : public ::testing::Test {
@@ -34,11 +34,18 @@ TEST_F(BaseLoggerTestFixture, SetLogLevel_WithTwoParams_AllowedLevelsShouldBeFro
 }
 
 TEST_F(BaseLoggerTestFixture, SetLogLevel_WithThreeParams_AllowedLevelsShouldBeParams) {
-    LogLevel param1 = LogLevel::INFO;
-    LogLevel param2 = LogLevel::ERROR;
-    LogLevel param3 = LogLevel::DEBUG;
-    std::vector<LogLevel> expect_allowed_levels = {param1, param2, param3}; 
+    std::vector<LogLevel> expect_allowed_levels = {LogLevel::INFO, LogLevel::ERROR, LogLevel::DEBUG}; 
 
-    base_logger->set_log_level(param1, param2, param3);
+    base_logger->set_log_level(expect_allowed_levels[0], expect_allowed_levels[1], expect_allowed_levels[2]);
+
+    EXPECT_EQ(base_logger->get_allowed_levels(), expect_allowed_levels);
+}
+
+TEST_F(BaseLoggerTestFixture, AddLogLevel_WithNormalParam_AddNewAllowedLevel) {
+    std::vector<LogLevel> expect_allowed_levels = {LogLevel::INFO, LogLevel::ERROR};
+
+    base_logger->set_log_level(expect_allowed_levels[0], expect_allowed_levels[0]);
+    base_logger->add_log_level(expect_allowed_levels[1]);
+
     EXPECT_EQ(base_logger->get_allowed_levels(), expect_allowed_levels);
 }

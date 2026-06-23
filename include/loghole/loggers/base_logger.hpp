@@ -26,13 +26,15 @@ public:
         m_allowed_levels.clear();
 
         ([&](LogLevel level) {
-            if (level != LogLevel::NONE && level != LogLevel::COUNT) {
+            if (is_log_level_valid(level) && !m_is_level_allowed(level)) {
                 m_allowed_levels.push_back(level);                
             }
         } (allowed_levels), ...);
 
         LH_DEBUG_PRINT("New allowed log levels set for logger " << this);
     }
+
+    void add_log_level(LogLevel level);
 
     std::vector<LogLevel> get_allowed_levels() const {return m_allowed_levels;}
 };

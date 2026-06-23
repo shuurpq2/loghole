@@ -31,7 +31,7 @@ int Loghole::get_logger_idx(std::shared_ptr<BaseLogger> logger_sptr) {
 }
 
 void Loghole::log(std::string info, LogLevel level) {
-    LH_DEBUG_PRINT("New log with level \"" << log_level_to_console_colored_string(level) << "\": " << info);
+    LH_DEBUG_PRINT("New log with level \"" << log_level_to_console_colored_string(level) << "\": \"" << info << "\"");
 
     Log log(std::move(info), level);
 

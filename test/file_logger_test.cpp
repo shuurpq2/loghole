@@ -1,4 +1,4 @@
-#include "loghole.hpp"
+#include "loghole/loghole.hpp"
 #include <gtest/gtest.h>
 #include <fstream>
 
