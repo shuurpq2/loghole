@@ -4,6 +4,8 @@ project(loghole VERSION 0.1)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+find_package(SQLite3 REQUIRED)
+
 add_library(loghole STATIC
         src/loggers/console_logger.cpp
         src/loggers/file_logger.cpp
@@ -17,10 +19,34 @@ add_library(loghole STATIC
         src/utils.cpp
 )
 
-find_package(SQLite3 REQUIRED)
-
-target_link_libraries(loghole PUBLIC sqlite3)
+target_link_libraries(loghole PUBLIC SQLite::SQLite3)
 
 target_compile_definitions(loghole PRIVATE $<$<CONFIG:Debug>:LH_DEBUG>)
 
-target_include_directories(loghole PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(loghole PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+)
+
+include(CMakePackageConfigHelpers)
+
+install(TARGETS loghole
+        EXPORT logholeTargets
+        ARCHIVE DESTINATION lib
+)
+
+install(EXPORT logholeTargets
+        FILE logholeTargets.cmake
+        NAMESPACE loghole::
+        DESTINATION lib/cmake/loghole
+)
+
+install(DIRECTORY include/ DESTINATION include)
+
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/logholeConfig.cmake" "
+include(CMakeFindDependencyMacro)
+find_dependency(SQLite3 REQUIRED)
+include(\"\${CMAKE_CURRENT_LIST_DIR}/logholeTargets.cmake\")
+")
+
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/logholeConfig.cmake" DESTINATION lib/cmake/loghole)

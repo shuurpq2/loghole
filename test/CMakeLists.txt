@@ -14,6 +14,10 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(googletest)
 
+list(APPEND CMAKE_PREFIX_PATH "/home/savethebees/my_libs")
+
+find_package(loghole REQUIRED)
+
 add_executable(a.out
     log_test.cpp
     logger_factory_test.cpp
@@ -23,9 +27,9 @@ add_executable(a.out
     sqlite_db_logger_test.cpp
 )
 
-target_include_directories(a.out PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/../include)
+target_include_directories(a.out PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-target_link_libraries(a.out PRIVATE gtest_main ${CMAKE_CURRENT_SOURCE_DIR}/../build/libloghole.a)
+target_link_libraries(a.out PRIVATE gtest_main loghole::loghole)
 
 include(GoogleTest)
 gtest_discover_tests(a.out)
