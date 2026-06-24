@@ -1,5 +1,6 @@
 #include "loghole/loggers/file_logger.hpp"
 #include "loghole/debug.hpp"
+#include "loghole/utils.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -19,7 +20,7 @@ void FileLogger::m_log(const Log& log) {
 
         LH_DEBUG_PRINT("New log added to file \"" << m_file_path << "\" with level \"" << log_level_to_console_colored_string(log.get_level()) << "\": \"" << log.get_info() << "\"");
     } else {
-        std::cerr << "Error while opening file \"" + m_file_path + "\"" << std::endl;
+        std::cerr << Utils::red("Error while opening file \"" + m_file_path + "\"") << std::endl;
     }
 }
 

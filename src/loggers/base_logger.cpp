@@ -1,4 +1,5 @@
 #include "loghole/loggers/base_logger.hpp"
+#include "loghole/utils.hpp"
 
 namespace lh {
 
@@ -22,23 +23,24 @@ void BaseLogger::log(std::string info, LogLevel level)  {
 }
 
 void BaseLogger::set_log_level(LogLevel min_level) {
-    if (!is_log_level_valid(min_level)) {
-        std::cerr << "Error: invalid log level" << std::endl;
-        exit(1);
-    }
-
     m_allowed_levels.clear();
     
-    for (int i = static_cast<int>(min_level); i < static_cast<int>(LogLevel::COUNT); i++) {
-        m_allowed_levels.push_back(static_cast<LogLevel>(i));
+    if (is_log_level_valid(min_level)) {
+        for (int i = static_cast<int>(min_level); i < static_cast<int>(LogLevel::COUNT); i++) {
+            m_allowed_levels.push_back(static_cast<LogLevel>(i));
+        }
     }
 
     LH_DEBUG_PRINT("New min log level set for logger " << this << ": \"" << log_level_to_console_colored_string(min_level) << "\"");
 }
 
 void BaseLogger::set_log_level(LogLevel min_level, LogLevel max_level) {
-    if (!(is_log_level_valid(min_level) && is_log_level_valid(max_level))) {
-        std::cerr << "Error: invalid log level" << std::endl;
+    if (!is_log_level_valid(min_level)) {
+        std::cerr << Utils::red("ValueError: min_level must be valid LogLevel") << std::endl;
+        exit(1);
+    }
+    if (!is_log_level_valid(max_level)) {
+        std::cerr << Utils::red("ValueError: max_level must be valid LogLevel") << std::endl;
         exit(1);
     }
 

@@ -19,4 +19,9 @@ std::string Utils::get_timestamp() {
     return ss.str();
 }
 
+std::string Utils::red(std::string str) {
+    return "\033[31m" + std::move(str) + "\033[0m";
+}
+
+
 }
