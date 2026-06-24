@@ -1,9 +1,11 @@
 #pragma once
 
+#include "loghole/log_level.hpp"
 #include <functional>
 #include <string>
 #include <chrono>
-#include "loghole/log_level.hpp"
+
+namespace lh {
 
 class Log {
 private:
@@ -22,3 +24,5 @@ public:
 
     std::string get_timestamp() const {return m_timestamp;}
 };
+
+}

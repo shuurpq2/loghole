@@ -2,6 +2,8 @@
 #include "loghole/utils.hpp"
 #include <iostream>
 
+namespace lh {
+
 Log::Log(const std::string info, const LogLevel level)
     :m_info(info), m_level(level)
 {
@@ -10,11 +12,13 @@ Log::Log(const std::string info, const LogLevel level)
         exit(1);
     }
 
-    m_timestamp = LHUtils::get_timestamp();
+    m_timestamp = Utils::get_timestamp();
 }
 
 std::string Log::formatted(const std::function<std::string(LogLevel)>& level_to_string_func) const {
     std::string res = m_timestamp + " [" + level_to_string_func(m_level) + "] " + m_info;
 
     return res;
+}
+
 }

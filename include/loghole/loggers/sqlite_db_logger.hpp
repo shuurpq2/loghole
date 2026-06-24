@@ -1,9 +1,11 @@
 #pragma once
 
-#include "loghole/loggers/base_sql_db_logger.hpp"
+#include "loghole/loggers/base_logger.hpp"
 #include <sqlite3.h>
 
-class SqliteDBLogger : public BaseSqlDBLogger {
+namespace lh {
+
+class SqliteDBLogger : public BaseLogger {
 private:
     std::string m_file_path;
     std::string m_tablename;
@@ -18,3 +20,5 @@ public:
 
     ~SqliteDBLogger();
 };
+
+}

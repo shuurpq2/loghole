@@ -4,6 +4,8 @@
 #include "loghole/loggers/base_logger.hpp"
 #include <memory>
 
+namespace lh {
+
 class LoggerFactory {
 public:
     template<typename LoggerT, typename... Args>
@@ -15,3 +17,5 @@ public:
         return new_logger;
     }
 };
+
+}

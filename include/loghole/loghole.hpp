@@ -12,6 +12,8 @@
 #include <vector>
 #include <memory>
 
+namespace lh {
+
 class Loghole {
 private:
     ThreadPool* m_thread_pool = nullptr;
@@ -34,3 +36,5 @@ public:
 
     void detach(std::shared_ptr<BaseLogger> logger_sptr);
 };
+
+}

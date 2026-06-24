@@ -3,6 +3,8 @@
 #include "loghole/loggers/base_logger.hpp"
 #include <string>
 
+namespace lh {
+
 class FileLogger : public BaseLogger {
 private:
     std::string m_file_path;
@@ -16,3 +18,5 @@ public:
 
     std::string get_file_path() const {return m_file_path;}
 };
+
+}

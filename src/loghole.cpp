@@ -2,6 +2,8 @@
 #include <iostream>
 #include <algorithm>
 
+namespace lh {
+
 Loghole::Loghole(int num_threads)
     
 {
@@ -67,4 +69,6 @@ void Loghole::attach(std::shared_ptr<BaseLogger> logger_sptr) {
 void Loghole::detach(std::shared_ptr<BaseLogger> logger_sptr) {
     m_loggers.erase(std::remove(m_loggers.begin(), m_loggers.end(), logger_sptr), m_loggers.end());
     LH_DEBUG_PRINT("Logger " << logger_sptr << " detached from " << this);
+}
+
 }

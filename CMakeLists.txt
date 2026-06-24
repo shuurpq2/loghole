@@ -10,7 +10,6 @@ add_library(loghole STATIC
         src/loggers/console_logger.cpp
         src/loggers/file_logger.cpp
         src/loggers/base_logger.cpp
-        src/loggers/base_sql_db_logger.cpp
         src/loggers/sqlite_db_logger.cpp
         src/log_level.cpp
         src/log.cpp

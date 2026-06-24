@@ -1,6 +1,8 @@
 #include "loghole/thread_pool.hpp"
 #include "loghole/debug.hpp"
 
+namespace lh {
+
 ThreadPool::ThreadPool(const std::function<void(std::string, LogLevel)>& log_func, int num_threads)
     : m_log_func(log_func), m_num_threads(num_threads)
 {
@@ -92,3 +94,4 @@ void ThreadPool::pool_wait() {
     queue_lock.unlock();
 }
 
+}

@@ -7,6 +7,8 @@
 #include <condition_variable>
 #include <functional>
 
+namespace lh {
+
 typedef struct Task {
     std::string info;
     LogLevel level;
@@ -39,3 +41,5 @@ public:
 
     void pool_wait();
 };
+
+}

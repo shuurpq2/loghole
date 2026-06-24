@@ -5,11 +5,11 @@
 class FileLoggerTestFixture : public ::testing::Test {
 protected:
     std::string log_file_path;    
-    FileLogger* file_logger;
+    lh::FileLogger* file_logger;
 
     void SetUp() override {
         log_file_path = "log_file.log";
-        file_logger = new FileLogger(log_file_path);
+        file_logger = new lh::FileLogger(log_file_path);
     }
 
     void TearDown() override {
@@ -25,12 +25,12 @@ TEST_F(FileLoggerTestFixture, Log_IntendedUseLogsWithAllowedLevelAndNot_ShouldLo
     std::ofstream log_file_w(log_file_path);
     log_file_w.close();
 
-    file_logger->set_log_level(LogLevel::ERROR);
+    file_logger->set_log_level(lh::LogLevel::ERROR);
 
-    Log allowed_log("Log with allowed level", LogLevel::ERROR);
+    lh::Log allowed_log("Log with allowed level", lh::LogLevel::ERROR);
     file_logger->log(allowed_log);
 
-    Log not_allowed_log("Log with not allowed level", LogLevel::INFO);
+    lh::Log not_allowed_log("Log with not allowed level", lh::LogLevel::INFO);
     file_logger->log(not_allowed_log);
 
     std::ifstream log_file(log_file_path);

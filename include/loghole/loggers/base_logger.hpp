@@ -5,6 +5,8 @@
 #include "loghole/debug.hpp"
 #include <string_view>
 
+namespace lh {
+
 class BaseLogger {
 protected:
     std::vector<LogLevel> m_allowed_levels = {LogLevel::INFO, LogLevel::WARNING, LogLevel::ERROR, LogLevel::FATAL};
@@ -38,3 +40,5 @@ public:
 
     std::vector<LogLevel> get_allowed_levels() const {return m_allowed_levels;}
 };
+
+}

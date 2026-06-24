@@ -1,5 +1,7 @@
 #include "loghole/loggers/sqlite_db_logger.hpp"
 
+namespace lh {
+
 SqliteDBLogger::SqliteDBLogger(std::string file_path, std::string tablename) 
     : m_file_path(file_path), m_tablename(tablename)
 {
@@ -41,4 +43,6 @@ int SqliteDBLogger::m_create_table() {
     std::string table_creation_sql = "CREATE TABLE IF NOT EXISTS " + m_tablename + " (id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp TEXT, level TEXT, info TEXT);";
 
     return sqlite3_exec(m_db, table_creation_sql.c_str(), nullptr, nullptr, nullptr);
+}
+
 }

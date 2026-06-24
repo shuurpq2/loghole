@@ -3,16 +3,16 @@
 
 class ThreadPoolTestFixture : public ::testing::Test {
 protected:
-    ThreadPool* thread_pool;
+    lh::ThreadPool* thread_pool;
     int num_threads;
 
-    void mock_log_func(std::string info, LogLevel level) {
+    void mock_log_func(std::string info, lh::LogLevel level) {
         return;
     }
 
     void SetUp() override {
         num_threads = 1;
-        thread_pool = new ThreadPool([this](std::string info, LogLevel level) {this->mock_log_func(info, level);}, num_threads);
+        thread_pool = new lh::ThreadPool([this](std::string info, lh::LogLevel level) {this->mock_log_func(info, level);}, num_threads);
     }
 
     void TearDown() override {

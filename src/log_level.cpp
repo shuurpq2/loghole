@@ -1,5 +1,7 @@
 #include "loghole/log_level.hpp"
 
+namespace lh {
+
 std::string log_level_to_string(LogLevel level) {
     switch(level) {
         case LogLevel::DEBUG: return "DEBUG";
@@ -24,4 +26,6 @@ std::string log_level_to_console_colored_string(LogLevel level) {
 
 bool is_log_level_valid(LogLevel level) {
     return level != LogLevel::NONE && level != LogLevel::COUNT;
+}
+
 }

@@ -3,10 +3,10 @@
 
 class BaseLoggerTestFixture : public ::testing::Test {
 protected:
-    BaseLogger* base_logger;
+    lh::BaseLogger* base_logger;
 
     void SetUp() {
-        base_logger = new ConsoleLogger();
+        base_logger = new lh::ConsoleLogger();
     }
 
     void TearDown() {
@@ -15,8 +15,8 @@ protected:
 };
 
 TEST_F(BaseLoggerTestFixture, SetLogLevel_IntendedUseWithOneParam_AllowedLevelsShouldBeAllFromGiven) {
-    LogLevel min_log_level = LogLevel::WARNING;
-    std::vector<LogLevel> expect_allowed_levels = {LogLevel::WARNING, LogLevel::ERROR, LogLevel::FATAL};
+    lh::LogLevel min_log_level = lh::LogLevel::WARNING;
+    std::vector<lh::LogLevel> expect_allowed_levels = {lh::LogLevel::WARNING, lh::LogLevel::ERROR, lh::LogLevel::FATAL};
 
     base_logger->set_log_level(min_log_level);
 
@@ -24,9 +24,9 @@ TEST_F(BaseLoggerTestFixture, SetLogLevel_IntendedUseWithOneParam_AllowedLevelsS
 }
 
 TEST_F(BaseLoggerTestFixture, SetLogLevel_IntendedUseWithTwoParams_AllowedLevelsShouldBeFromMinToMax) {
-    LogLevel min_log_level = LogLevel::INFO;
-    LogLevel max_log_level = LogLevel::ERROR;
-    std::vector<LogLevel> expect_allowed_levels = {LogLevel::INFO, LogLevel::WARNING, LogLevel::ERROR};
+    lh::LogLevel min_log_level = lh::LogLevel::INFO;
+    lh::LogLevel max_log_level = lh::LogLevel::ERROR;
+    std::vector<lh::LogLevel> expect_allowed_levels = {lh::LogLevel::INFO, lh::LogLevel::WARNING, lh::LogLevel::ERROR};
 
     base_logger->set_log_level(min_log_level, max_log_level);
 
@@ -34,7 +34,7 @@ TEST_F(BaseLoggerTestFixture, SetLogLevel_IntendedUseWithTwoParams_AllowedLevels
 }
 
 TEST_F(BaseLoggerTestFixture, SetLogLevel_IntendedUseWithThreeParams_AllowedLevelsShouldBeParams) {
-    std::vector<LogLevel> expect_allowed_levels = {LogLevel::INFO, LogLevel::ERROR, LogLevel::DEBUG}; 
+    std::vector<lh::LogLevel> expect_allowed_levels = {lh::LogLevel::INFO, lh::LogLevel::ERROR, lh::LogLevel::DEBUG}; 
 
     base_logger->set_log_level(expect_allowed_levels[0], expect_allowed_levels[1], expect_allowed_levels[2]);
 
@@ -42,7 +42,7 @@ TEST_F(BaseLoggerTestFixture, SetLogLevel_IntendedUseWithThreeParams_AllowedLeve
 }
 
 TEST_F(BaseLoggerTestFixture, AddLogLevel_IntendedUse_AddNewAllowedLevel) {
-    std::vector<LogLevel> expect_allowed_levels = {LogLevel::INFO, LogLevel::ERROR};
+    std::vector<lh::LogLevel> expect_allowed_levels = {lh::LogLevel::INFO, lh::LogLevel::ERROR};
 
     base_logger->set_log_level(expect_allowed_levels[0], expect_allowed_levels[0]);
     base_logger->add_log_level(expect_allowed_levels[1]);

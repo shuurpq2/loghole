@@ -2,7 +2,11 @@
 
 #include <string>
 
-class LHUtils {
+namespace lh {
+
+class Utils {
 public:
     static std::string get_timestamp();
 };
+
+}

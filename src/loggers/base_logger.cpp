@@ -1,5 +1,7 @@
 #include "loghole/loggers/base_logger.hpp"
 
+namespace lh {
+
 bool BaseLogger::m_is_level_allowed(LogLevel level) {
     for (LogLevel l : m_allowed_levels) {
         if (l == level) return true;
@@ -55,4 +57,6 @@ void BaseLogger::add_log_level(LogLevel level) {
 
         LH_DEBUG_PRINT("New allowed log level added for logger " << this << ": \"" << log_level_to_console_colored_string(level) << "\"");
     }
+}
+
 }

@@ -4,7 +4,9 @@
 #include <iomanip>
 #include <iostream>
 
-std::string LHUtils::get_timestamp() {
+namespace lh {
+
+std::string Utils::get_timestamp() {
     auto now = std::chrono::system_clock::now();
     time_t time_t_now = std::chrono::system_clock::to_time_t(now);
 
@@ -15,4 +17,6 @@ std::string LHUtils::get_timestamp() {
     ss << std::put_time(&local_time, "%Y-%m-%d %H:%M:%S");
 
     return ss.str();
+}
+
 }

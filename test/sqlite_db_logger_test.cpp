@@ -5,13 +5,13 @@ class SqliteDBLoggerTestFixture : public ::testing::Test{
 protected:
     std::string db_file_path;
     std::string tablename;
-    SqliteDBLogger* sqlite_db_logger;
+    lh::SqliteDBLogger* sqlite_db_logger;
     sqlite3* db;
 
     void SetUp() {
         db_file_path = "database.db";
         tablename = "logs";
-        sqlite_db_logger = new SqliteDBLogger(db_file_path, tablename);
+        sqlite_db_logger = new lh::SqliteDBLogger(db_file_path, tablename);
 
         ASSERT_EQ(sqlite3_open(db_file_path.c_str(), &db), SQLITE_OK);
         ASSERT_EQ(sqlite3_exec(db, std::string("DROP TABLE IF EXISTS " + tablename).c_str(), nullptr, nullptr, nullptr), SQLITE_OK);
@@ -25,7 +25,7 @@ protected:
 
 TEST_F(SqliteDBLoggerTestFixture, Log_IntendedUse_AddLogToDB) {
     std::string log_info = "Log in database";
-    LogLevel log_level = LogLevel::INFO;
+    lh::LogLevel log_level = lh::LogLevel::INFO;
     sqlite_db_logger->log(log_info, log_level);
 
     char** result;
