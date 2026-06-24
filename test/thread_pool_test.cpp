@@ -17,7 +17,5 @@ protected:
 
     void TearDown() override {
         delete thread_pool;
-        std::vector<int> v;
-        v.push_back(10);
     }
 };
