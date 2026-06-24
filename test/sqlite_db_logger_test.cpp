@@ -19,6 +19,7 @@ protected:
 
     void TearDown() {
         sqlite3_close(db);
+        delete sqlite_db_logger;
     }
 };
 
@@ -35,4 +36,6 @@ TEST_F(SqliteDBLoggerTestFixture, Log_IntendedUse_AddLogToDB) {
     ASSERT_EQ(sqlite3_get_table(db, sql.c_str(), &result, &rows, &columns, nullptr), SQLITE_OK);
     EXPECT_EQ(std::stoi(result[columns]), 1);
     EXPECT_EQ(result[columns + 3], log_info);
+
+    sqlite3_free_table(result);
 }

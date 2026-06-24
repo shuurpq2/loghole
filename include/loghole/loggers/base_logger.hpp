@@ -9,14 +9,14 @@ class BaseLogger {
 protected:
     std::vector<LogLevel> m_allowed_levels = {LogLevel::INFO, LogLevel::WARNING, LogLevel::ERROR, LogLevel::FATAL};
 
-    virtual void m_log(Log& log) = 0;
+    virtual void m_log(const Log& log) = 0;
 
     bool m_is_level_allowed(LogLevel level);
 
 public:
     virtual ~BaseLogger() = default;
 
-    void log(Log& log);
+    void log(const Log& log);
     void log(std::string info, LogLevel level);
 
     void set_log_level(LogLevel min_level);

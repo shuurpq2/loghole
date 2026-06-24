@@ -9,7 +9,7 @@ private:
     std::string m_tablename;
     sqlite3* m_db;
 
-    void m_log(Log& log) override;
+    void m_log(const Log& log) override;
 
     int m_create_table();
 

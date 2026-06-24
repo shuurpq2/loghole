@@ -9,7 +9,7 @@ FileLogger::FileLogger(const std::string& file_path)
 
 }
 
-void FileLogger::m_log(Log& log) {
+void FileLogger::m_log(const Log& log) {
     std::ofstream file(m_file_path, std::ios::app);
     if (file.is_open()) {
         file << log.formatted() << "\n";

@@ -5,5 +5,5 @@
 
 class ConsoleLogger : public BaseLogger {
 private:
-    void m_log(Log& log) override;
+    void m_log(const Log& log) override;
 };

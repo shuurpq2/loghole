@@ -8,7 +8,7 @@ bool BaseLogger::m_is_level_allowed(LogLevel level) {
     return false;
 }
 
-void BaseLogger::log(Log& log) {
+void BaseLogger::log(const Log& log) {
     if (m_is_level_allowed(log.get_level())) {
         m_log(log);
     }

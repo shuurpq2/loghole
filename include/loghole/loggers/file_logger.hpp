@@ -7,7 +7,7 @@ class FileLogger : public BaseLogger {
 private:
     std::string m_file_path;
 
-    void m_log(Log& log) override;
+    void m_log(const Log& log) override;
 
 public:
     FileLogger(const std::string& file_path);

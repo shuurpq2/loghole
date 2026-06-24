@@ -12,7 +12,7 @@ SqliteDBLogger::~SqliteDBLogger() {
     sqlite3_close(m_db);
 }
 
-void SqliteDBLogger::m_log(Log& log) {
+void SqliteDBLogger::m_log(const Log& log) {
     if (m_create_table() != SQLITE_OK) {
         std::cerr << "Error: sqlite table creation error" << std::endl;
     }
