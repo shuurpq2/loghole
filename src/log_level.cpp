@@ -9,6 +9,7 @@ std::string log_level_to_string(LogLevel level) {
         case LogLevel::WARNING: return "WARNING";
         case LogLevel::ERROR: return "ERROR";
         case LogLevel::FATAL: return "FATAL";
+        case LogLevel::NONE: return "NONE";
         default: return "UNKNOWN";
     }
 }
