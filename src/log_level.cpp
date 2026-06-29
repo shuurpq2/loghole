@@ -1,4 +1,5 @@
 #include "loghole/log_level.hpp"
+#include <colorhead/colorhead.hpp>
 
 namespace lh {
 
@@ -16,11 +17,11 @@ std::string log_level_to_string(LogLevel level) {
 
 std::string log_level_to_console_colored_string(LogLevel level) {
     switch(level) {
-        case LogLevel::DEBUG: return "\033[34m" + log_level_to_string(level) + "\033[0m";
-        case LogLevel::INFO: return "\033[32m" + log_level_to_string(level) + "\033[0m";
-        case LogLevel::WARNING: return "\033[33m" + log_level_to_string(level) + "\033[0m";
-        case LogLevel::ERROR: return "\033[31m" + log_level_to_string(level) + "\033[0m";
-        case LogLevel::FATAL: return "\033[1;31m" + log_level_to_string(level) + "\033[0m";
+        case LogLevel::DEBUG: return clrhd::transform_text(log_level_to_string(level), clrhd::BLUE_16);
+        case LogLevel::INFO: return clrhd::transform_text(log_level_to_string(level), clrhd::GREEN_16);
+        case LogLevel::WARNING: return clrhd::transform_text(log_level_to_string(level), clrhd::YELLOW_16);
+        case LogLevel::ERROR: return clrhd::transform_text(log_level_to_string(level), clrhd::RED_16);
+        case LogLevel::FATAL: return clrhd::transform_text(log_level_to_string(level), clrhd::RED_16, clrhd::BOLD);
         default: return log_level_to_string(level);
     }
 }

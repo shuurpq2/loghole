@@ -5,6 +5,10 @@ project(loghole_test LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+list(APPEND CMAKE_PREFIX_PATH "/home/savethebees/my_libs")
+
+find_package(loghole REQUIRED)
+
 include(FetchContent)
 
 FetchContent_Declare(
@@ -13,10 +17,6 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(googletest)
-
-list(APPEND CMAKE_PREFIX_PATH "/home/savethebees/my_libs")
-
-find_package(loghole REQUIRED)
 
 add_executable(a.out
     log_test.cpp
@@ -29,7 +29,7 @@ add_executable(a.out
 
 target_include_directories(a.out PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-target_link_libraries(a.out PRIVATE gtest_main loghole::loghole)
+target_link_libraries(a.out PRIVATE gtest_main lh::loghole)
 
 include(GoogleTest)
 gtest_discover_tests(a.out)
